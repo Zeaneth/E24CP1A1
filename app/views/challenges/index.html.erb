@@ -10,12 +10,28 @@
 </div>
 <script>
   $(".dial").knob({
-      'change' : function (v) { console.log(v); },
+      'change' : function (superRGB) {
+                                      console.log(superRGB);
+                                     },
       'min': 0,
       'max': 255,
-      'release' : function (v) { 
-        $("#rgb").text("rgb(" + $('.red').val() + ", "+ $('.green').val() + ", " + $('.blue').val() + ")") 
-        $(".rgb-generator").css("background-color", "rgb("+ $('.red').val() +", "+ $('.green').val() + "," + $('.blue').val() + ")");
+      'release' : function (superRGB) { 
+        $("#rgb").text(
+                      "El rgb definido es: (" +
+                      "Red: "+ $('.red').val() + 
+                      ", Green: "+ $('.green').val() + 
+                      ", Blue: " + $('.blue').val() + ")"
+                      ) 
+        $(".rgb-generator").css(
+                      "background-color",
+                      "rgb("+ 
+                      $('.red').val() +
+                      "," + 
+                      $('.green').val() + 
+                      "," + 
+                      $('.blue').val() +
+                      ")"
+                      );
       }
     }
   );
