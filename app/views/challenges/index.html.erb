@@ -1,0 +1,68 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Challenge 48</h1>
+
+<input type="text" value="250" class="dial red">
+<input type="text" value="0" class="dial green">
+<input type="text" value="0" class="dial blue">
+<h1 id="rgb" class="text-left"></h2>
+<div class="container rgb-generator m-1" style="height: 15rem; width: 15rem">
+</div>
+<script>
+  $(".dial").knob({
+      'change' : function (v) { console.log(v); },
+      'min': 0,
+      'max': 255,
+      'release' : function (v) { 
+        $("#rgb").text("rgb(" + $('.red').val() + ", "+ $('.green').val() + ", " + $('.blue').val() + ")") 
+        $(".rgb-generator").css("background-color", "rgb("+ $('.red').val() +", "+ $('.green').val() + "," + $('.blue').val() + ")");
+      }
+    }
+  );
+  $('.red').trigger(
+    'configure',
+    {
+      "fgColor":"#FF0000",
+      "inputColor":"#FF0000",
+      "width":"180",
+    }
+  );
+  $('.green').trigger(
+    'configure',
+    {
+      "fgColor":"#00FF00",
+      "inputColor":"#00FF00",
+      "width":"180",
+    }
+  );
+    $('.blue').trigger(
+    'configure',
+    {
+      "fgColor":"#0000FF",
+      "inputColor":"#0000FF",
+      "width":"180",
+    }
+  );
+</script>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @challenges.each do |challenge| %>
+      <tr>
+        <td><%= link_to 'Show', challenge %></td>
+        <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
+        <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Challenge', new_challenge_path %>
